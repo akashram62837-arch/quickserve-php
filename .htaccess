@@ -1,0 +1,8 @@
+Options -Indexes
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+php_flag display_errors off
+php_value error_reporting E_ALL
