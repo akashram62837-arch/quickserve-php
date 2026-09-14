@@ -1,6 +1,8 @@
 # QuickServe — PHP 
 
+The Modern Operating System for Local Home Services
 
+QuickServe is a hyper-local, on-demand marketplace connecting households with verified service professionals. Engineered for speed, trust, and scale, it features a multi-portal architecture serving Customers, Service Providers, and Platform Administrators.
 
 ```
 C:\xampp\htdocs\quickserve\
