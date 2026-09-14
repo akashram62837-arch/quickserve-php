@@ -81,25 +81,11 @@ Use the seeded accounts (passwords are the original plain-text seed values —
 they are automatically upgraded to secure bcrypt hashes the first time each
 one logs in successfully):
 
-| Email | Password |
-|---|---|
-| aarav@gmail.com | aarav123 |
-| priya@gmail.com | priya123 |
-| karan@gmail.com | karan123 |
-| sneha@gmail.com | sneha123 |
-| vikram@gmail.com | vikram123 |
 
 Or click **Register** to create a new account.
 
 ### Providers
-| Email | Password |
-|---|---|
-| rahul@gmail.com | rahul123 |
-| suresh@gmail.com | suresh123 |
-| manoj@gmail.com | manoj123 |
-| pooja@gmail.com | pooja123 |
-| deepak@gmail.com | deepak123 |
-| anita@gmail.com | anita123 |
+
 
 New provider registrations go to `http://localhost/quickserve/provider/register.php`
 and require **admin approval** before they can log in (Admin → Providers →
