@@ -1,7 +1,6 @@
-# QuickServe — PHP + MySQL Edition
+# QuickServe — PHP 
 
-A full conversion of the QuickServe React app into a PHP (PDO/MySQL) + vanilla
-JS application, built to run on **XAMPP** from:
+
 
 ```
 C:\xampp\htdocs\quickserve\
