@@ -1,9 +1,5 @@
 <?php
-/**
- * QuickServe - Database Configuration
- * XAMPP defaults: host=localhost, user=root, password=""
- * Database name matches the provided SQL dump: quickserve_newphp
- */
+
 
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'quickserve');
