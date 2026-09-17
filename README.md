@@ -1,7 +1,8 @@
-# QuickServe — PHP + MySQL Edition
+# QuickServe — PHP 
 
-A full conversion of the QuickServe React app into a PHP (PDO/MySQL) + vanilla
-JS application, built to run on **XAMPP** from:
+The Modern Operating System for Local Home Services
+
+QuickServe is a hyper-local, on-demand marketplace connecting households with verified service professionals. Engineered for speed, trust, and scale, it features a multi-portal architecture serving Customers, Service Providers, and Platform Administrators.
 
 ```
 C:\xampp\htdocs\quickserve\
@@ -35,71 +36,22 @@ quickserve/
 
 ---
 
-## 2. XAMPP setup (step by step)
 
-1. **Copy the project.** Extract this folder so the path is exactly:
-   `C:\xampp\htdocs\quickserve\`
-
-2. **Start Apache and MySQL** from the XAMPP Control Panel.
-
-3. **Create the database.**
-   - Open `http://localhost/phpmyadmin`
-   - Click **New**, name the database `quickserve_newphp`, collation
-     `utf8mb4_general_ci`, click **Create**.
-
-4. **Import the schema + data.**
-   - Select the `quickserve_newphp` database
-   - Go to the **Import** tab
-   - Choose the file `quickserve/database/quickserve.sql`
-   - Click **Go**
-
-   You should see 8 tables: `admins`, `bookings`, `categories`, `customers`,
-   `notifications`, `payments`, `providers`, `reviews`, `services` — all
-   pre-populated with your original seed data.
-
-5. **Check the database config** (only needed if your XAMPP MySQL uses a
-   non-default user/password). Open `quickserve/config/db.php`:
-   ```php
-   define('DB_HOST', 'localhost');
-   define('DB_NAME', 'quickserve_newphp');
-   define('DB_USER', 'root');
-   define('DB_PASS', '');
-   ```
-   Default XAMPP MySQL has no root password, so normally you don't need to
-   change anything.
-
-6. **Visit the site**: `http://localhost/quickserve/`
-
-That's it — no `composer install`, no build step, no Node required.
 
 ---
 
-## 3. Logging in
+## 2. Logging in
 
 ### Customers
 Use the seeded accounts (passwords are the original plain-text seed values —
 they are automatically upgraded to secure bcrypt hashes the first time each
 one logs in successfully):
 
-| Email | Password |
-|---|---|
-| aarav@gmail.com | aarav123 |
-| priya@gmail.com | priya123 |
-| karan@gmail.com | karan123 |
-| sneha@gmail.com | sneha123 |
-| vikram@gmail.com | vikram123 |
 
 Or click **Register** to create a new account.
 
 ### Providers
-| Email | Password |
-|---|---|
-| rahul@gmail.com | rahul123 |
-| suresh@gmail.com | suresh123 |
-| manoj@gmail.com | manoj123 |
-| pooja@gmail.com | pooja123 |
-| deepak@gmail.com | deepak123 |
-| anita@gmail.com | anita123 |
+
 
 New provider registrations go to `http://localhost/quickserve/provider/register.php`
 and require **admin approval** before they can log in (Admin → Providers →
