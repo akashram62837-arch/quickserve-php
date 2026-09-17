@@ -6,9 +6,8 @@ if (is_customer_logged_in()) {
 }
 
 $errors = [];
-$old = ['fullName' => '', 'email' => '', 'phone' => '', 'city' => ''];
+$old = ['fullName' => '', 'email' => '', 'phone' => '', 'address' => ''];
 $allowedDomains = ['gmail.com','yahoo.com','yahoo.in','outlook.com','hotmail.com','live.com','icloud.com','protonmail.com','proton.me','rediffmail.com','zoho.com','mail.com'];
-$cities = ['Mumbai','Delhi','Bengaluru','Surat','Ahmedabad','Pune'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     csrf_verify();
@@ -16,11 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fullName = trim($_POST['fullName'] ?? '');
     $email    = strtolower(trim($_POST['email'] ?? ''));
     $phoneRaw = trim($_POST['phone'] ?? '');
-    $city     = trim($_POST['city'] ?? '');
+    $address  = trim($_POST['address'] ?? '');
     $password = $_POST['password'] ?? '';
     $confirm  = $_POST['confirmPassword'] ?? '';
 
-    $old = compact('fullName', 'email', 'phoneRaw', 'city');
+    $old = compact('fullName', 'email', 'phoneRaw', 'address');
     $old['phone'] = $phoneRaw;
 
     if (mb_strlen($fullName) < 2) {
@@ -47,8 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['phone'] = 'Please enter a valid 10-digit Indian mobile number.';
     }
 
-    if (!in_array($city, $cities, true)) {
-        $errors['city'] = 'Please select your city.';
+    if (mb_strlen($address) < 5) {
+        $errors['address'] = 'Please enter a valid address.';
     }
 
     if (strlen($password) < 6) {
@@ -79,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "INSERT INTO customers (full_name, email, password, phone, address, profile_image, status, created_at, updated_at)
              VALUES (?, ?, ?, ?, ?, '', 1, NOW(), NOW())"
         );
-        $stmt->execute([$fullName, $email, $hash, $cleanPhone, $city]);
+        $stmt->execute([$fullName, $email, $hash, $cleanPhone, $address]);
         $customerId = $pdo->lastInsertId();
 
         create_notification($pdo, $customerId, null, 'Welcome to QuickServe!', 'Your account has been created successfully.');
@@ -125,14 +124,9 @@ require __DIR__ . '/../includes/public_header.php';
           <?php if (!empty($errors['phone'])): ?><span class="form-error"><?php echo e($errors['phone']); ?></span><?php endif; ?>
         </div>
         <div class="form-group">
-          <label>City</label>
-          <select name="city" required>
-            <option value="" disabled <?php echo $old['city'] === '' ? 'selected' : ''; ?>>Select City</option>
-            <?php foreach ($cities as $c): ?>
-              <option value="<?php echo e($c); ?>" <?php echo $old['city'] === $c ? 'selected' : ''; ?>><?php echo e($c); ?></option>
-            <?php endforeach; ?>
-          </select>
-          <?php if (!empty($errors['city'])): ?><span class="form-error"><?php echo e($errors['city']); ?></span><?php endif; ?>
+          <label>Address</label>
+          <input type="text" name="address" placeholder="Enter your complete address" value="<?php echo e($old['address']); ?>" required>
+          <?php if (!empty($errors['address'])): ?><span class="form-error"><?php echo e($errors['address']); ?></span><?php endif; ?>
         </div>
       </div>
 
